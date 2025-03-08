@@ -1,0 +1,50 @@
+<!-- templates/cart.html -->
+{% extends 'base.html' %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Your Cart</h2>
+    <table class="table table-bordered" id="cart-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Price ($)</th>
+                <th>Quantity</th>
+                <th>Subtotal ($)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Cart items will be loaded here -->
+        </tbody>
+    </table>
+    <h3>Total: $<span id="total-price">0.00</span></h3>
+
+    <!-- Billing and Payment Information Form -->
+    <form id="billing-form">
+        <h3>Billing Information</h3>
+        <!-- Billing fields -->
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" class="form-control" name="fullName" id="fullName" required>
+        </div>
+        <!-- Add other billing fields as necessary -->
+
+        <h3>Payment Information</h3>
+        <!-- Payment fields -->
+        <div class="form-group">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" class="form-control" name="cardNumber" id="cardNumber" required>
+        </div>
+        <!-- Add other payment fields -->
+
+        <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+{% endblock %}

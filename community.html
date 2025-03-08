@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RED Katana - Gaming News & Chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-red: #e63946;
+            --primary-dark: #1d1d1d;
+            --secondary-dark: #2d2d2d;
+            --text-light: #f1faee;
+            --text-secondary: #a8dadc;
+            --accent-blue: #457b9d;
+            --highlight: #e76f51;
+        }
+        
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background-color: var(--secondary-dark);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--primary-red);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .red {
+            color: var(--primary-red);
+            margin-right: 0.3rem;
+        }
+        
+        .logo-icon {
+            margin-right: 0.8rem;
+            font-size: 2rem;
+            color: var(--primary-red);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-red);
+        }
+        
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        /* NEWS SECTION */
+        .news-section {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            border-right: 1px solid #333;
+        }
+        
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .news-refresh {
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .news-refresh:hover {
+            background-color: #c1292e;
+        }
+        
+        .news-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .news-card {
+            background-color: var(--secondary-dark);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            border-left: 3px solid var(--primary-red);
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .news-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .news-card-content {
+            padding: 1rem;
+        }
+        
+        .news-card-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+        
+        .news-card-desc {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .news-card-footer {
+            display: flex;
+            justify-content: space-between;
+            color: #72767d;
+            font-size: 0.8rem;
+        }
+        
+        .news-card-link {
+            color: var(--primary-red);
+            text-decoration: none;
+        }
+        
+        .news-card-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* CHAT SECTION */
+        .chat-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-container {
+            display: flex;
+            flex: 1;
+        }
+        
+        .channels-sidebar {
+            width: 240px;
+            background-color: var(--secondary-dark);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .channel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        .add-channel-btn {
+            background: none;
+            border: none;
+            color: var(--primary-red);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .channel-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        .channel-item {
+            padding: 0.5rem;
+            margin-bottom: 0.3rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        
+        .channel-item:hover {
+            background-color: #3a3a3a;
+        }
+        
+        .channel-item.active {
+            background-color: #393c43;
+            border-left: 3px solid var(--primary-red);
+        }
+        
+        .channel-item-hash {
+            color: #72767d;
+            margin-right: 0.5rem;
+        }
+        
+        .user-panel {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--primary-red);
+            margin-right: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .user-info {
+            flex: 1;
+        }
+        
+        .username {
+            font-weight: bold;
+        }
+        
+        .user-status {
+            font-size: 0.8rem;
+            color: #72767d;
+        }
+        
+        .chat-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #36393f;
+        }
+        
+        .chat-header {
+            padding: 1rem;
+            border-bottom: 1px solid #202225;
+            display: flex;
+            align-items: center;
+        }
+        
+        .chat-header-hash {
+            font-size: 1.5rem;
+            color: #72767d;
+            margin-right: 0.5rem;
+        }
+        
+        .chat-header-name {
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .chat-header-desc {
+            color: #72767d;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+        
+        .messages-container {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .message {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-red);
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .message-content {
+            flex: 1;
+        }
+        
+        .message-header {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 0.2rem;
+        }
+        
+        .message-author {
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .message-time {
+            font-size: 0.7rem;
+            color: #72767d;
+        }
+        
+        .message-text {
+            color: #dcddde;
+            word-wrap: break-word;
+        }
+        
+        .chat-input-container {
+            padding: 1rem;
+            background-color: #36393f;
+        }
+        
+        .chat-input-form {
+            display: flex;
+            background-color: #40444b;
+            border-radius: 8px;
+            padding: 0 1rem;
+        }
+        
+        .chat-input {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 1rem 0;
+            color: #dcddde;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .chat-input::placeholder {
+            color: #72767d;
+        }
+        
+        .send-btn {
+            background: none;
+            border: none;
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            padding: 0 0.5rem;
+            cursor: pointer;
+        }
+        
+        /* Modals */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal {
+            background-color: #36393f;
+            border-radius: 8px;
+            padding: 2rem;
+            width: 400px;
+            max-width: 90%;
+        }
+        
+        .modal-header {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .form-label {
+            font-weight: bold;
+            color: #b9bbbe;
+        }
+        
+        .form-input {
+            padding: 0.7rem;
+            background-color: #202225;
+            border: 1px solid #040405;
+            border-radius: 4px;
+            color: #dcddde;
+            font-size: 1rem;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .modal-cancel {
+            background-color: #4f545c;
+            color: white;
+            border: none;
+            padding: 0.7rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .modal-submit {
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 0.7rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .modal-submit:hover {
+            background-color: #c1292e;
+        }
+        
+        /* Loading spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-red);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-dark);
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.8rem;
+            color: #72767d;
+            border-top: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="logo-icon">⚔️</span>
+            <h1 class="logo-text"><span class="red">RED</span> Katana</h1>
+        </div>
+        <nav class="nav-links">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">News</a>
+            <a href="#" class="nav-link">Forums</a>
+            <a href="#" class="nav-link">About</a>
+        </nav>
+    </header>
+    
+    <div class="main-container">
+        <!-- News Section (Left Half) -->
+        <section class="news-section">
+            <div class="news-header">
+                <h2>Gaming News</h2>
+                <button class="news-refresh" id="refresh-news">Refresh</button>
+            </div>
+            <div class="news-cards" id="news-container">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Chat Section (Right Half) -->
+        <section class="chat-section">
+            <div class="chat-container">
+                <!-- Channels Sidebar -->
+                <div class="channels-sidebar">
+                    <div class="channel-header">
+                        <h3>Channels</h3>
+                        <button class="add-channel-btn" id="add-channel-btn">+</button>
+                    </div>
+                    <div class="channel-list" id="channel-list">
+                        <div class="channel-item active" data-channel="general">
+                            <span class="channel-item-hash">#</span>
+                            <span>general</span>
+                        </div>
+                        <div class="channel-item" data-channel="esports">
+                            <span class="channel-item-hash">#</span>
+                            <span>esports</span>
+                        </div>
+                        <div class="channel-item" data-channel="pc-gaming">
+                            <span class="channel-item-hash">#</span>
+                            <span>pc-gaming</span>
+                        </div>
+                        <div class="channel-item" data-channel="console-gaming">
+                            <span class="channel-item-hash">#</span>
+                            <span>console-gaming</span>
+                        </div>
+                        <div class="channel-item" data-channel="red-katana-announcements">
+                            <span class="channel-item-hash">#</span>
+                            <span>announcements</span>
+                        </div>
+                    </div>
+                    <div class="user-panel">
+                        <div class="user-avatar" id="user-avatar">U</div>
+                        <div class="user-info">
+                            <div class="username" id="username">User</div>
+                            <div class="user-status">Online</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chat Content -->
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-header-hash">#</span>
+                        <span class="chat-header-name" id="current-channel">general</span>
+                        <span class="chat-header-desc">General gaming discussion</span>
+                    </div>
+                    <div class="messages-container" id="messages-container"></div>
+                    <div class="chat-input-container">
+                        <form class="chat-input-form" id="message-form">
+                            <input type="text" class="chat-input" id="message-input" placeholder="Send a message...">
+                            <button type="submit" class="send-btn">→</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        © 2025 RED Katana - Your Ultimate Gaming Community
+    </footer>
+    
+    <!-- Add Channel Modal -->
+    <div class="modal-backdrop" id="channel-modal-backdrop">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Create Channel</h3>
+            </div>
+            <form class="modal-form" id="channel-form">
+                <div class="form-group">
+                    <label class="form-label" for="channel-name">Channel Name</label>
+                    <input type="text" class="form-input" id="channel-name" placeholder="new-channel">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="channel-desc">Description (optional)</label>
+                    <input type="text" class="form-input" id="channel-desc" placeholder="What's this channel about?">
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="modal-cancel" id="channel-modal-cancel">Cancel</button>
+                    <button type="submit" class="modal-submit">Create Channel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- User Setup Modal -->
+    <div class="modal-backdrop" id="user-modal-backdrop" style="display: flex;">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Join RED Katana Community</h3>
+            </div>
+            <form class="modal-form" id="user-form">
+                <div class="form-group">
+                    <label class="form-label" for="user-name">Choose Your Username</label>
+                    <input type="text" class="form-input" id="user-name" placeholder="YourUsername">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="user-color">Avatar Color</label>
+                    <input type="color" class="form-input" id="user-color" value="#e63946">
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="modal-submit">Start Chatting</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // ---- USER SETUP ----
+        let currentUser = {
+            username: "",
+            color: "#e63946",
+            id: generateUserId()
+        };
+        
+        function generateUserId() {
+            return Math.random().toString(36).substr(2, 9);
+        }
+        
+        const userForm = document.getElementById('user-form');
+        const userModalBackdrop = document.getElementById('user-modal-backdrop');
+        
+        userForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('user-name').value.trim();
+            const color = document.getElementById('user-color').value;
+            
+            if (username) {
+                currentUser.username = username;
+                currentUser.color = color;
+                
+                // Update UI with user info
+                document.getElementById('username').textContent = username;
+                const userAvatar = document.getElementById('user-avatar');
+                userAvatar.textContent = username.charAt(0).toUpperCase();
+                userAvatar.style.backgroundColor = color;
+                
+                // Close modal
+                userModalBackdrop.style.display = 'none';
+                
+                // Initialize chat
+                loadChatHistory(currentChannel);
+            }
+        });
+        
+        // ---- CHANNELS FUNCTIONALITY ----
+        let currentChannel = "general";
+        const channelDescriptions = {
+            "general": "General gaming discussion",
+            "esports": "Esports news and tournaments",
+            "pc-gaming": "PC gaming discussion",
+            "console-gaming": "Console gaming discussion",
+            "red-katana-announcements": "Official RED Katana announcements and updates"
+        };
+        
+        // Channel selection
+        const channelList = document.getElementById('channel-list');
+        channelList.addEventListener('click', function(e) {
+            const channelItem = e.target.closest('.channel-item');
+            if (channelItem) {
+                // Update active state
+                document.querySelector('.channel-item.active')?.classList.remove('active');
+                channelItem.classList.add('active');
+                
+                // Get channel name
+                const channel = channelItem.dataset.channel;
+                currentChannel = channel;
+                
+                // Update header
+                document.getElementById('current-channel').textContent = channel;
+                document.querySelector('.chat-header-desc').textContent = channelDescriptions[channel] || `${channel} discussion`;
+                
+                // Load channel messages
+                loadChatHistory(channel);
+            }
+        });
+        
+        // Add channel modal
+        const addChannelBtn = document.getElementById('add-channel-btn');
+        const channelModalBackdrop = document.getElementById('channel-modal-backdrop');
+        const channelModalCancel = document.getElementById('channel-modal-cancel');
+        const channelForm = document.getElementById('channel-form');
+        
+        addChannelBtn.addEventListener('click', function() {
+            channelModalBackdrop.style.display = 'flex';
+        });
+        
+        channelModalCancel.addEventListener('click', function() {
+            channelModalBackdrop.style.display = 'none';
+        });
+        
+        channelForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const channelName = document.getElementById('channel-name').value.trim().toLowerCase().replace(/\s+/g, '-');
+            const channelDesc = document.getElementById('channel-desc').value.trim();
+            
+            if (channelName) {
+                // Create new channel
+                const channelItem = document.createElement('div');
+                channelItem.className = 'channel-item';
+                channelItem.dataset.channel = channelName;
+                channelItem.innerHTML = `
+                    <span class="channel-item-hash">#</span>
+                    <span>${channelName}</span>
+                `;
+                
+                channelList.appendChild(channelItem);
+                
+                // Store channel description
+                channelDescriptions[channelName] = channelDesc || `${channelName} discussion`;
+                
+                // Switch to new channel
+                channelItem.click();
+                
+                // Close modal
+                channelModalBackdrop.style.display = 'none';
+                
+                // Reset form
+                channelForm.reset();
+            }
+        });
+        
+        // ---- CHAT FUNCTIONALITY ----
+        const messagesContainer = document.getElementById('messages-container');
+        const messageForm = document.getElementById('message-form');
+        const messageInput = document.getElementById('message-input');
+        
+        // Simulated chat data
+        const channelMessages = {
+            "general": [
+                {
+                    id: "msg1",
+                    user: {
+                        username: "GamerPro",
+                        color: "#FF5733",
+                        id: "user1"
+                    },
+                    text: "Did anyone see the latest trailer for the new Elder Scrolls game?",
+                    timestamp: Date.now() - 3600000 // 1 hour ago
+                },
+                {
+                    id: "msg2",
+                    user: {
+                        username: "RPGFan",
+                        color: "#33FF57",
+                        id: "user2"
+                    },
+                    text: "Yes! The graphics look amazing. Can't wait to explore the new world.",
+                    timestamp: Date.now() - 3000000 // 50 minutes ago
+                }
+            ],
+            "esports": [
+                {
+                    id: "msg3",
+                    user: {
+                        username: "TourneyWatcher",
+                        color: "#3357FF",
+                        id: "user3"
+                    },
+                    text: "Anyone watching the Dota 2 International this year?",
+                    timestamp: Date.now() - 7200000 // 2 hours ago
+                }
+            ],
+            "red-katana-announcements": [
+                {
+                    id: "msg4",
+                    user: {
+                        username: "RED_Admin",
+                        color: "#e63946",
+                        id: "admin1"
+                    },
+                    text: "Welcome to the RED Katana gaming community! We're excited to have you join us. Check out the latest news and chat with fellow gamers.",
+                    timestamp: Date.now() - 86400000 // 1 day ago
+                },
+                {
+                    id: "msg5",
+                    user: {
+                        username: "RED_Admin",
+                        color: "#e63946",
+                        id: "admin1"
+                    },
+                    text: "Our new website is now live! Explore the gaming news section and join different chat channels to connect with the community.",
+                    timestamp: Date.now() - 43200000 // 12 hours ago
+                }
+            ],
+            "pc-gaming": [],
+            "console-gaming": []
+        };
+        
+        function loadChatHistory(channel) {
+            messagesContainer.innerHTML = '';
+            
+            // Get messages for the channel
+            const messages = channelMessages[channel] || [];
+            
+            if (messages.length === 0) {
+                const emptyMessage = document.createElement('div');
+                emptyMessage.style.textAlign = 'center';
+                emptyMessage.style.color = '#72767d';
+                emptyMessage.style.marginTop = '2rem';
+                emptyMessage.textContent = 'No messages yet. Be the first to say hello!';
+                messagesContainer.appendChild(emptyMessage);
+                return;
+            }
+            
+            // Render messages
+            messages.forEach(message => {
+                appendMessage(message);
+            });
+            
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function appendMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message';
+            messageElement.dataset.id = message.id;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = message.user.username.charAt(0).toUpperCase();
+            avatar.style.backgroundColor = message.user.color;
+            
+            const content = document.createElement('div');
+            content.className = 'message-content';
+            
+            const header = document.createElement('div');
+            header.className = 'message-header';
+            
+            const author = document.createElement('div');
+            author.className = 'message-author';
+            author.textContent = message.user.username;
+            author.style.color = message.user.color;
+            
+            const time = document.createElement('div');
+            time.className = 'message-time';
+            time.textContent = formatTimestamp(message.timestamp);
+            
+            const text = document.createElement('div');
+            text.className = 'message-text';
+            text.textContent = message.text;
+            
+            header.appendChild(author);
+            header.appendChild(time);
+            content.appendChild(header);
+            content.appendChild(text);
+            
+            messageElement.appendChild(avatar);
+            messageElement.appendChild(content);
+            
+            messagesContainer.appendChild(messageElement);
+        }
+        
+        function formatTimestamp(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+        
+        messageForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const text = messageInput.value.trim();
+            
+            if (text && currentUser.username) {
+                // Create message object
+                const message = {
+                    id: Date.now().toString(),
+                    user: { ...currentUser },
+                    text: text,
+                    timestamp: Date.now()
+                };
+                
+                // Add to channel messages
+                if (!channelMessages[currentChannel]) {
+                    channelMessages[currentChannel] = [];
+                }
+                channelMessages[currentChannel].push(message);
+                
+                // Append to UI
+                appendMessage(message);
+                
+                // Scroll to bottom
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                // Clear input
+                messageInput.value = '';
+            }
+        });
+        
+        // ---- NEWS FUNCTIONALITY ----
+        const newsContainer = document.getElementById('news-container');
+        const refreshNewsBtn = document.getElementById('refresh-news');
+        
+        // Sample gaming news data
+        const sampleNewsData = [
+            {
+                title: "RED Katana Announces New Tournament Series",
+                description: "Join our upcoming competitive gaming tournaments with prize pools and special community events.",
+                image: "/api/placeholder/400/200",
+                source: "RED Katana News",
+                date: "2025-02-26",
+                url: "#"
+            },
+            {
+                title: "Next-Gen Console Expected to Launch Next Spring",
+                description: "Industry sources reveal the upcoming console will feature groundbreaking graphics capabilities and faster load times.",
+                image: "/api/placeholder/400/200",
+                source: "GamesDaily",
+                date: "2025-02-25",
+                url: "#"
+            },
+            {
+                title: "Major Update Coming to Popular Battle Royale Game",
+                description: "The update will include new weapons, map changes, and quality-of-life improvements requested by the community.",
+                image: "/api/placeholder/400/200",
+                source: "GameSpot",
+                date: "2025-02-24",
+                url: "#"
+            },
+            {
+                title: "Indie Developer Announces Innovative Puzzle Game",
+                description: "The game combines unique mechanics with a striking art style, already generating buzz among critics.",
+                image: "/api/placeholder/400/200",
+                source: "IndieGameMag",
+                date: "2025-02-23",
+                url: "#"
+            },
+            {
+                title: "Esports Tournament Sets New Viewership Record",
+                description: "Last weekend's championship finals attracted over 5 million concurrent viewers, breaking previous records.",
+                image: "/api/placeholder/400/200",
+                source: "Esports Wire",
+                date: "2025-02-22",
+                url: "#"
+            },
+            {
+                title: "Classic RPG Series Getting Modern Remake",
+                description: "Fans of the beloved franchise can experience the classic storyline with modern graphics and gameplay improvements.",
+                image: "/api/placeholder/400/200",
+                source: "RPG Insider",
+                date: "2025-02-21",
+                url: "#"
+            }
+        ];
+        
+        function loadNews() {
+            // Clear container and show loading spinner
+            newsContainer.innerHTML = `
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                </div>
+            `;
+            
+            // Simulate API delay
+            setTimeout(() => {
+                newsContainer.innerHTML = '';
+                
+                // Render news cards
+                sampleNewsData.forEach(news => {
+                    const newsCard = document.createElement('div');
+                    newsCard.className = 'news-card';
+                    
+                    const formattedDate = new Date(news.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                    });
+                    
+                    newsCard.innerHTML = `
+                        <img src="${news.image}" alt="${news.title}">
+                        <div class="news-card-content">
+                            <h3 class="news-card-title">${news.title}</h3>
+                            <p class="news-card-desc">${news.description}</p>
+                            <div class="news-card-footer">
+                                <span>${news.source} • ${formattedDate}</span>
+                                <a href="${news.url}" class="news-card-link">Read More</a>
+                            </div>
+                        </div>
+                    `;
+                    
+                    newsContainer.appendChild(newsCard);
+                });
+                
+            }, 1500); // 1.5 seconds delay
+        }
+        
+        // Load news on page load
+        loadNews();
+        
+        // Refresh news button
+        refreshNewsBtn.addEventListener('click', loadNews);
+        
+        // ---- EXTRA FEATURES ----
+        
+        // Online user count simulation
+        function updateOnlineCount() {
+            const onlineCount = Math.floor(Math.random() * 50) + 20; // Random between 20-70
+            const channels = document.querySelectorAll('.channel-item');
+            
+            channels.forEach(channel => {
+                const channelName = channel.dataset.channel;
+                // Only add counts to main channels
+                if (['general', 'esports', 'pc-gaming', 'console-gaming'].includes(channelName)) {
+                    // Remove existing count if any
+                    const existingCount = channel.querySelector('.online-count');
+                    if (existingCount) {
+                        existingCount.remove();
+                    }
+                    
+                    // Add count
+                    const count = document.createElement('span');
+                    count.className = 'online-count';
+                    count.style.marginLeft = 'auto';
+                    count.style.fontSize = '0.8rem';
+                    count.style.color = '#72767d';
+                    count.textContent = Math.floor(onlineCount / (Math.random() * 2 + 1));
+                    
+                    channel.appendChild(count);
+                }
+            });
+        }
+        
+        // Update online counts every 30 seconds
+        updateOnlineCount();
+        setInterval(updateOnlineCount, 30000);
+        
+        // Typing indicator
+        const typingStates = {};
+        
+        messageInput.addEventListener('input', function() {
+            if (messageInput.value.trim() && !typingStates[currentUser.id]) {
+                // Start typing
+                typingStates[currentUser.id] = setTimeout(() => {
+                    delete typingStates[currentUser.id];
+                    updateTypingIndicator();
+                }, 5000); // Typing timeout after 5 seconds
+                
+                updateTypingIndicator();
+            } else if (!messageInput.value.trim() && typingStates[currentUser.id]) {
+                // Stop typing
+                clearTimeout(typingStates[currentUser.id]);
+                delete typingStates[currentUser.id];
+                updateTypingIndicator();
+            }
+        });
+        
+        function updateTypingIndicator() {
+            // Remove existing indicator
+            const existingIndicator = document.querySelector('.typing-indicator');
+            if (existingIndicator) {
+                existingIndicator.remove();
+            }
+            
+            // Check if anyone is typing
+            const typingUsers = Object.keys(typingStates);
+            if (typingUsers.length === 0) {
+                return;
+            }
+            
+            // Create indicator
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.style.padding = '0.5rem 1rem';
+            indicator.style.color = '#72767d';
+            indicator.style.fontSize = '0.8rem';
+            indicator.style.fontStyle = 'italic';
+            
+            indicator.textContent = `${currentUser.username} is typing...`;
+            
+            // Add before input container
+            const chatContent = document.querySelector('.chat-content');
+            chatContent.insertBefore(indicator, document.querySelector('.chat-input-container'));
+        }
+        
+        // Notification system
+        function showNotification(title, body) {
+            // Check if notifications are supported and permission is granted
+            if (!("Notification" in window)) {
+                console.log("Notifications not supported");
+                return;
+            }
+            
+            if (Notification.permission === "granted") {
+                new Notification(title, {
+                    body: body,
+                    icon: "/api/placeholder/64/64" // Placeholder icon
+                });
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        new Notification(title, {
+                            body: body,
+                            icon: "/api/placeholder/64/64"
+                        });
+                    }
+                });
+            }
+        }
+        
+        // Simulate occasional notifications
+        function simulateNotification() {
+            const events = [
+                { title: "New Tournament Announced", body: "Join the RED Katana Summer Championship!" },
+                { title: "Friend Online", body: "GamerPro is now online" },
+                { title: "New Message", body: "You have a new message in #esports" }
+            ];
+            
+            const randomEvent = events[Math.floor(Math.random() * events.length)];
+            showNotification(randomEvent.title, randomEvent.body);
+        }
+        
+        // Request notification permission when user is set up
+        userForm.addEventListener('submit', function() {
+            if ("Notification" in window) {
+                Notification.requestPermission();
+            }
+            
+            // Simulate a notification after 10 seconds
+            setTimeout(simulateNotification, 10000);
+        });
+        
+        // Add search functionality
+        function addSearchBox() {
+            const header = document.querySelector('.chat-header');
+            
+            const searchBox = document.createElement('div');
+            searchBox.className = 'search-box';
+            searchBox.style.marginLeft = 'auto';
+            searchBox.style.display = 'flex';
+            searchBox.style.alignItems = 'center';
+            
+            searchBox.innerHTML = `
+                <input type="text" placeholder="Search messages..." style="
+                    background-color: #202225;
+                    border: none;
+                    border-radius: 4px;
+                    padding: 0.5rem;
+                    color: #dcddde;
+                    font-size: 0.9rem;
+                    width: 200px;
+                ">
+                <button style="
+                    background: none;
+                    border: none;
+                    color: #72767d;
+                    margin-left: 0.5rem;
+                    cursor: pointer;
+                ">🔍</button>
+            `;
+            
+            header.appendChild(searchBox);
+        }
+        
+        // Add search box after a short delay
+        setTimeout(addSearchBox, 2000);
+        
+        // Add emoji picker functionality
+        function addEmojiPicker() {
+            const chatInputForm = document.querySelector('.chat-input-form');
+            const messageInput = document.getElementById('message-input');
+            
+            const emojiButton = document.createElement('button');
+            emojiButton.type = 'button';
+            emojiButton.className = 'emoji-btn';
+            emojiButton.innerHTML = '😊';
+            emojiButton.style.background = 'none';
+            emojiButton.style.border = 'none';
+            emojiButton.style.fontSize = '1.2rem';
+            emojiButton.style.cursor = 'pointer';
+            emojiButton.style.padding = '0 0.5rem';
+            
+            // Insert before send button
+            chatInputForm.insertBefore(emojiButton, document.querySelector('.send-btn'));
+            
+            // Common emojis
+            const commonEmojis = ['😊', '😂', '👍', '❤️', '🎮', '🏆', '⚔️', '🔥', '👀', '🤔'];
+            
+            // Create emoji picker
+            const emojiPicker = document.createElement('div');
+            emojiPicker.className = 'emoji-picker';
+            emojiPicker.style.position = 'absolute';
+            emojiPicker.style.bottom = '60px';
+            emojiPicker.style.right = '80px';
+            emojiPicker.style.backgroundColor = '#36393f';
+            emojiPicker.style.border = '1px solid #202225';
+            emojiPicker.style.borderRadius = '4px';
+            emojiPicker.style.padding = '0.5rem';
+            emojiPicker.style.display = 'none';
+            emojiPicker.style.zIndex = '100';
+            
+            // Add emojis
+            commonEmojis.forEach(emoji => {
+                const emojiElement = document.createElement('span');
+                emojiElement.textContent = emoji;
+                emojiElement.style.fontSize = '1.5rem';
+                emojiElement.style.padding = '0.5rem';
+                emojiElement.style.cursor = 'pointer';
+                
+                emojiElement.addEventListener('click', function() {
+                    messageInput.value += emoji;
+                    emojiPicker.style.display = 'none';
+                });
+                
+                emojiPicker.appendChild(emojiElement);
+            });
+            
+            document.querySelector('.chat-input-container').appendChild(emojiPicker);
+            
+            // Toggle emoji picker
+            emojiButton.addEventListener('click', function() {
+                if (emojiPicker.style.display === 'none') {
+                    emojiPicker.style.display = 'block';
+                } else {
+                    emojiPicker.style.display = 'none';
+                }
+            });
+            
+            // Close picker when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!emojiButton.contains(e.target) && !emojiPicker.contains(e.target)) {
+                    emojiPicker.style.display = 'none';
+                }
+            });
+        }
+        
+        // Add emoji picker
+        addEmojiPicker();
+        
+        // Add theme switcher
+        function addThemeSwitcher() {
+            const footer = document.querySelector('footer');
+            
+            const themeSwitcher = document.createElement('div');
+            themeSwitcher.className = 'theme-switcher';
+            themeSwitcher.style.marginTop = '0.5rem';
+            
+            themeSwitcher.innerHTML = `
+                <span style="margin-right: 0.5rem;">Theme:</span>
+                <button class="theme-btn active" data-theme="dark" style="
+                    background-color: #1d1d1d;
+                    border: 1px solid #333;
+                    border-radius: 4px;
+                    padding: 0.3rem 0.5rem;
+                    color: #f1faee;
+                    margin-right: 0.5rem;
+                    cursor: pointer;
+                ">Dark</button>
+                <button class="theme-btn" data-theme="light" style="
+                    background-color: #f1faee;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    padding: 0.3rem 0.5rem;
+                    color: #1d1d1d;
+                    cursor: pointer;
+                ">Light</button>
+            `;
+            
+            footer.appendChild(themeSwitcher);
+            
+            // Theme switching functionality
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            
+            themeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active state
+                    document.querySelector('.theme-btn.active')?.classList.remove('active');
+                    button.classList.add('active');
+                    
+                    // Get theme
+                    const theme = button.dataset.theme;
+                    
+                    // Apply theme
+                    if (theme === 'light') {
+                        document.documentElement.style.setProperty('--primary-dark', '#f5f5f5');
+                        document.documentElement.style.setProperty('--secondary-dark', '#e0e0e0');
+                        document.documentElement.style.setProperty('--text-light', '#333333');
+                        document.documentElement.style.setProperty('--text-secondary', '#555555');
+                    } else {
+                        document.documentElement.style.setProperty('--primary-dark', '#1d1d1d');
+                        document.documentElement.style.setProperty('--secondary-dark', '#2d2d2d');
+                        document.documentElement.style.setProperty('--text-light', '#f1faee');
+                        document.documentElement.style.setProperty('--text-secondary', '#a8dadc');
+                    }
+                });
+            });
+        }
+        
+        // Add theme switcher
+        addThemeSwitcher();
+    </script>
+</body>
+</html>
