@@ -1,0 +1,819 @@
+body, html {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    overflow-x: hidden;
+}
+
+.navbar-brand {
+    font-family: 'Monospace', sans-serif;
+    font-weight: 100;
+    font-size: 120px;
+    color: #fcf7f8;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+}
+
+.navbar {
+    transition: background-color 0.5s ease, color 0.5s ease;
+    background-color: transparent !important;
+}
+
+.nav-logo {
+    width: 75px;
+    height: 75px;
+    margin-left: 25px;
+}
+
+
+.navbar-scrolled {
+    background-color: black !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-scrolled .nav-link {
+    color: #fcf7f8 !important;
+    transition: color 0.5s ease;
+}
+
+.navbar-nav {
+    gap: 40px;
+}
+
+.navbar-nav .nav-link {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #fcf7f8 !important;
+    padding: 8px 20px;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: red;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #a31621 !important;
+}
+
+.navbar-nav .nav-link:hover::after {
+    transform: scaleX(1);
+}
+
+.navbar-nav .nav-link i {
+    font-size: 18px;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 775px;
+    overflow: hidden;
+}
+
+.background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.video-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fcf7f8;
+    text-align: center;
+    z-index: 2;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.red-text {
+    color: #a31621;
+}
+
+/* General scroll section styles */
+.scroll-section-container {
+    position: relative;
+    width: 100%;
+    background-color: #000;
+    overflow: hidden;
+}
+
+.scroll-section {
+    position: relative;
+}
+
+.panel {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    overflow: hidden;
+    background-color: #0a0a0a;
+}
+
+.panel-content {
+    max-width: 1200px;
+    width: 90%;
+    padding: 2rem;
+    z-index: 10;
+    text-align: center;
+    transform-style: preserve-3d;
+}
+
+.scroll-heading {
+    margin-top: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.red-text {
+    color: #ff0000;
+}
+
+/* First Panel - Game Cards */
+.game-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    perspective: 1000px;
+}
+
+.game-card {
+    width: 250px;
+    height: 350px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.game-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.game-card-front, .game-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.game-card-front {
+    background: linear-gradient(135deg, #333, #111);
+}
+
+.game-card-back {
+    background: linear-gradient(135deg, #222, #000);
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.game-img-placeholder {
+    width: 100%;
+    height: 60%;
+    background: url(./Images/sign.webp) no-repeat center center;
+    background-size: contain;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+
+.game-card h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.game-card p {
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.btn-game {
+    padding: 10px 25px;
+    background: #ff0000;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-game:hover {
+    background: #cc0000;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+/* Second Panel - Latest Releases */
+.release-showcase {
+    width: 100%;
+    background: rgba(30, 30, 30, 0.7);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    transform-style: preserve-3d;
+}
+
+.showcase-content {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .showcase-content {
+        flex-direction: column;
+    }
+}
+
+.showcase-image {
+    flex: 1;
+    min-height: 300px;
+    background: url(./Images/bg.jpg) no-repeat center center;
+    background-size: contain;
+    border-radius: 10px;
+    transform: translateZ(20px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.showcase-info {
+    flex: 1;
+    text-align: left;
+    color: white;
+    transform: translateZ(40px);
+}
+
+.showcase-info h3 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.release-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.genre {
+    background: rgba(255, 0, 0, 0.7);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.rating {
+    color: gold;
+    font-size: 1.2rem;
+}
+
+.release-cta {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: #ff0000;
+    color: white;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary:hover {
+    background: #cc0000;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Third Panel - Events Timeline */
+.events-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.event-timeline {
+    position: relative;
+    padding: 30px 0;
+}
+
+.event-timeline:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 3px;
+    background: rgba(255, 0, 0, 0.7);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    perspective: 1000px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: #ff0000;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+}
+
+.timeline-content {
+    position: relative;
+    width: 45%;
+    padding: 20px;
+    background: rgba(30, 30, 30, 0.7);
+    border-radius: 10px;
+    color: white;
+    transform-style: preserve-3d;
+    transform: translateZ(20px);
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-left: auto;
+}
+
+.timeline-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.event-date {
+    font-size: 0.9rem;
+    color: #ff0000;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Fourth Panel - Gaming Gear */
+.panel-4 {
+    position: relative;
+}
+
+.parallax-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('https://via.placeholder.com/1920x1080') no-repeat center center;
+    background-size: cover;
+    z-index: 1;
+}
+
+.gear-showcase {
+    position: relative;
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 20px;
+    padding: 40px;
+    transform-style: preserve-3d;
+    z-index: 10;
+}
+
+.gear-item {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+@media (max-width: 768px) {
+    .gear-item {
+        flex-direction: column;
+    }
+}
+
+.gear-model {
+    flex: 1;
+    height: 300px;
+    min-width: 300px;
+    border-radius: 10px;
+    transform-style: preserve-3d;
+}
+
+.gear-info {
+    flex: 1;
+    color: white;
+    text-align: left;
+    transform: translateZ(30px);
+}
+
+.gear-info h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.gear-price {
+    display: block;
+    font-size: 1.8rem;
+    color: #ff0000;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.btn-shop {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #ff0000;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-shop:hover {
+    background: #cc0000;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .scroll-heading {
+        font-size: 2.5rem;
+    }
+    
+    .game-cards {
+        flex-wrap: wrap;
+    }
+    
+    .timeline-content {
+        width: 100%;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .event-timeline:before {
+        left: 20px;
+    }
+    
+    .timeline-dot {
+        left: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-card {
+        width: 200px;
+        height: 300px;
+    }
+    
+    .showcase-info h3 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .panel-content {
+        padding: 1rem;
+    }
+    
+    .game-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .release-cta {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+.slide-up {
+    animation: slideUp 1s ease-in-out forwards;
+}
+
+.scale-in {
+    animation: scaleIn 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* 3D Depth Effect */
+.depth-1 {
+    transform: translateZ(20px);
+}
+
+.depth-2 {
+    transform: translateZ(40px);
+}
+
+.depth-3 {
+    transform: translateZ(60px);
+}
+
+/* Glow Effects */
+.glow-red {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+
+.glow-white {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+#chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    z-index: 1000;
+}
+
+#chatbot-toggle {
+    background-color: #fcf7f8;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#chatbox {
+    display: none;
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    width: 400px;
+    background: #fcf7f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+#chat-header {
+    background: black;
+    color: #fcf7f8;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chat-header h5 {
+    flex: 1;
+    margin: 0;
+    font-size: 20px;
+}
+
+#close-chat {
+    font-size: 30px;
+    color: #fcf7f8;
+    background: rgba(255, 255, 255, 0);
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 8px;
+}
+
+
+#chat-content {
+    padding: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#chat-input-container {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+}
+
+#chat-input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+#send-btn {
+    background: black;
+    color: #fcf7f8;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: 0.3s;
+}
+
+#send-btn:hover {
+    background: #fcf7f8;
+    color: black;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+
+.icon {
+    text-decoration: none;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 14px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+        rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.icon>i {
+    color: black;
+    font-size: 1.5rem;
+    transition: all 0.2s;
+}
+
+.icon:hover>i {
+    scale: 1.2;
+    color: #f1f1f1;
+}
+
+.icon:before {
+    background: var(--color);
+    content: "";
+    position: absolute;
+    width: 130%;
+    height: 130%;
+    left: -110%;
+    top: 80%;
+    transform: rotate(45deg);
+}
+
+.icon:hover:before {
+    animation: slide 0.7s forwards;
+}
+
+@keyframes slide {
+    50% {
+        left: 10%;
+        top: -40%;
+    }
+
+    100% {
+        left: -15%;
+        top: -15%;
+    }
+}
+
+.icon:has(.fa-instagram) {
+    --color: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+}
+
+.icon:has(.fa-linkedin-in) {
+    --color: #0077b5;
+}
+
+.icon:has(.fa-youtube) {
+    --color: #ff0000;
+}
+
+.icon:has(.fa-x-twitter) {
+    --color: #1da1f2;
+}
+
+.icon:has(.fa-github) {
+    --color: #333;
+}

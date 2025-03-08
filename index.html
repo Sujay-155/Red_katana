@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RED KATANA ( Home )</title>
+    <link rel="shortcut icon" href="./Images/logofinal.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3386fd30d1.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid d-flex justify-content-center">
+            <a class="navbar-brand mx-auto" href="index.html">
+                <img src="./Images/navlogofinal.png" alt="Logo" class="nav-logo">
+            </a>
+
+            <button class="navbar-toggler mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav d-flex justify-content-center w-100">
+                    <li class="nav-item px-3">
+                        <a class="nav-link active" href="indexxx.html">HOME</a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link" href="./store/browse.html">STORE</a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link" href="./community/community.html">COMMUNITY</a>
+                    </li>
+                    <!-- <li class="nav-item px-3">
+                        <a class="nav-link" href="./support.html">SUPPORT</a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link" href="#"><i class="fas fa-search"></i></a>
+                    </li> -->
+                    <li class="nav-item px-3">
+                        <a class="nav-link" href="./shopping/shopping.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link" href="./login/login.html">LOGIN | REGISTER</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        const navEL = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY >= 56) {
+                navEL.classList.add('navbar-scrolled');
+                navEL.classList.remove('bg-transparent');
+            } else if (window.scrollY < 56) {
+                navEL.classList.remove('navbar-scrolled');
+                navEL.classList.add('bg-transparent');
+            }
+        });
+    </script>
+
+    <div class="video-container">
+        <video autoplay muted loop class="background-video">
+            <source src="./Videos/Colddddd.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay"></div>
+        <div class="video-content">
+            <img src="./Images/logofinal.png" alt="Red Katana Logo" class="logo">
+            <h1>Welcome to <span class="red-text">Red</span> Katana</h1>
+            <p>Explore the world of gaming like never before.</p>
+        </div>
+    </div>
+
+    <!-- 3D Scrollable Gaming Section -->
+    <div class="scroll-section-container">
+        <div class="scroll-section">
+            <!-- First Panel -->
+            <section class="panel panel-1">
+                <div class="panel-content">
+                    <h2 class="scroll-heading">Featured <span class="red-text">Games</span></h2>
+                    <div class="game-cards">
+                        <div class="game-card">
+                            <div class="game-card-inner">
+                                <div class="game-card-front">
+                                    <div class="game-img-placeholder"></div>
+                                    <h3>Cyber Legends</h3>
+                                </div>
+                                <div class="game-card-back">
+                                    <p>A dystopian future where technology and humanity clash.</p>
+                                    <a href="#" class="btn-game">Explore</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card">
+                            <div class="game-card-inner">
+                                <div class="game-card-front">
+                                    <div class="game-img-placeholder"></div>
+                                    <h3>Shadow Realm</h3>
+                                </div>
+                                <div class="game-card-back">
+                                    <p>Venture into darkness and uncover ancient mysteries.</p>
+                                    <a href="#" class="btn-game">Explore</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card">
+                            <div class="game-card-inner">
+                                <div class="game-card-front">
+                                    <div class="game-img-placeholder"></div>
+                                    <h3>Astral Conquest</h3>
+                                </div>
+                                <div class="game-card-back">
+                                    <p>Command your fleet across galaxies in epic space battles.</p>
+                                    <a href="#" class="btn-game">Explore</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Second Panel -->
+            <section class="panel panel-2">
+                <div class="panel-content">
+                    <h2 class="scroll-heading">Latest <span class="red-text">Releases</span></h2>
+                    <div class="release-showcase">
+                        <div class="showcase-content">
+                            <div class="showcase-image"></div>
+                            <div class="showcase-info">
+                                <h3>Neon Dynasty</h3>
+                                <div class="release-meta">
+                                    <span class="genre">Action RPG</span>
+                                    <span class="rating">⭐⭐⭐⭐⭐</span>
+                                </div>
+                                <p>Experience a breathtaking journey through a futuristic metropolis where choices determine your destiny.</p>
+                                <div class="release-cta">
+                                    <a href="#" class="btn-primary">Buy Now</a>
+                                    <a href="#" class="btn-secondary">Add to Wishlist</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Third Panel -->
+            <section class="panel panel-3">
+                <div class="panel-content">
+                    <h2 class="scroll-heading">Gaming <span class="red-text">Events</span></h2>
+                    <div class="events-container">
+                        <div class="event-timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h3>Red Katana Championship</h3>
+                                    <p class="event-date">April 15, 2025</p>
+                                    <p>Join the ultimate gaming tournament with prizes worth over $100,000.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h3>Developer Conference</h3>
+                                    <p class="event-date">May 22, 2025</p>
+                                    <p>Learn from industry experts and get exclusive insights into game development.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h3>Summer Game Showcase</h3>
+                                    <p class="event-date">June 10, 2025</p>
+                                    <p>Be the first to see upcoming releases and exclusive game trailers.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fourth Panel -->
+            <section class="panel panel-4">
+                <div class="parallax-background"></div>
+                <div class="panel-content">
+                    <h2 class="scroll-heading">Gaming <span class="red-text">Gear</span></h2>
+                    <div class="gear-showcase">
+                        <div class="gear-item">
+                            <div class="gear-model" id="gear-model-1"></div>
+                            <div class="gear-info">
+                                <h3>Katana Pro Controller</h3>
+                                <p>Precision engineered for professional gamers with customizable buttons and ergonomic design.</p>
+                                <span class="gear-price">$89.99</span>
+                                <a href="#" class="btn-shop">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // 3D Scrolling Effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize GSAP ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Setup the scroll-triggered animations
+            const panels = gsap.utils.toArray('.panel');
+            
+            // Create a timeline for each panel
+            panels.forEach((panel, i) => {
+                // Panel entrance animations
+                gsap.fromTo(panel, 
+                    { 
+                        y: i === 0 ? 0 : 100, 
+                        opacity: i === 0 ? 1 : 0,
+                        scale: 0.9
+                    },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        scale: 1,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: panel,
+                            start: 'top bottom',
+                            end: 'top center',
+                            scrub: true,
+                        }
+                    }
+                );
+                
+                // Content animations
+                const content = panel.querySelector('.panel-content');
+                const heading = panel.querySelector('.scroll-heading');
+                
+                gsap.fromTo(heading,
+                    { y: 50, opacity: 0 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 1,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: panel,
+                            start: 'top bottom-=100',
+                            end: 'top center',
+                            scrub: 1,
+                        }
+                    }
+                );
+                
+                // Animate content elements with stagger
+                const contentElements = content.querySelectorAll('.game-card, .showcase-content, .timeline-item, .gear-item');
+                gsap.fromTo(contentElements,
+                    { y: 100, opacity: 0 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        stagger: 0.2,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: panel,
+                            start: 'top center+=100',
+                            end: 'center center',
+                            scrub: 1,
+                        }
+                    }
+                );
+            });
+            
+            // 3D rotation effect for game cards
+            const gameCards = document.querySelectorAll('.game-card');
+            gameCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    gsap.to(this.querySelector('.game-card-inner'), {
+                        rotationY: 180,
+                        duration: 0.6,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    gsap.to(this.querySelector('.game-card-inner'), {
+                        rotationY: 0,
+                        duration: 0.6,
+                        ease: 'power2.out'
+                    });
+                });
+            });
+            
+            // Parallax effect for the fourth panel background
+            gsap.to('.parallax-background', {
+                y: -100,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.panel-4',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
+            
+            // Create a 3D model for the gaming gear using Three.js
+            const gearContainer = document.getElementById('gear-model-1');
+            
+            // Setup the scene
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, gearContainer.clientWidth / gearContainer.clientHeight, 0.1, 1000);
+            
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(gearContainer.clientWidth, gearContainer.clientHeight);
+            gearContainer.appendChild(renderer.domElement);
+            
+            // Create a simple controller model
+            const geometry = new THREE.BoxGeometry(2, 0.5, 1);
+            const material = new THREE.MeshPhongMaterial({ color: 0xff0000 });
+            const controller = new THREE.Mesh(geometry, material);
+            
+            // Add buttons to the controller
+            const buttonGeometry = new THREE.SphereGeometry(0.1, 16, 16);
+            const buttonMaterial = new THREE.MeshPhongMaterial({ color: 0x000000 });
+            
+            // Add four buttons on top
+            for (let i = 0; i < 4; i++) {
+                const button = new THREE.Mesh(buttonGeometry, buttonMaterial);
+                button.position.set(-0.5 + i * 0.4, 0.3, 0.2);
+                controller.add(button);
+            }
+            
+            // Add joysticks
+            const joystickGeometry = new THREE.CylinderGeometry(0.15, 0.15, 0.2, 32);
+            const joystickMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 });
+            
+            const leftJoystick = new THREE.Mesh(joystickGeometry, joystickMaterial);
+            leftJoystick.position.set(-0.7, 0.3, 0);
+            controller.add(leftJoystick);
+            
+            const rightJoystick = new THREE.Mesh(joystickGeometry, joystickMaterial);
+            rightJoystick.position.set(0.7, 0.3, 0);
+            controller.add(rightJoystick);
+            
+            scene.add(controller);
+            
+            // Add lighting
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+            directionalLight.position.set(0, 1, 1);
+            scene.add(directionalLight);
+            
+            const ambientLight = new THREE.AmbientLight(0x404040);
+            scene.add(ambientLight);
+            
+            camera.position.z = 3;
+            
+            // Rotate the controller based on scroll position
+            ScrollTrigger.create({
+                trigger: '.panel-4',
+                start: 'top bottom',
+                end: 'bottom top',
+                onUpdate: (self) => {
+                    controller.rotation.y = self.progress * Math.PI * 2;
+                    controller.rotation.x = self.progress * Math.PI / 4;
+                    renderer.render(scene, camera);
+                }
+            });
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                controller.rotation.y += 0.005;
+                renderer.render(scene, camera);
+            }
+            animate();
+            
+            // Handle resize
+            window.addEventListener('resize', function() {
+                camera.aspect = gearContainer.clientWidth / gearContainer.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(gearContainer.clientWidth, gearContainer.clientHeight);
+            });
+        });
+    </script>
+
+    <div class="wrapper">
+        <a href="#" class="icon"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" class="icon"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" class="icon"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+    </div>
+
+    <div id="chatbot-container">
+        <button id="chatbot-toggle">
+            <i class="fa-solid fa-comments"></i>
+        </button>
+        <div id="chatbox">
+            <div id="chat-header">
+                <h5>Gaming Vault Bot</h5>
+                <button id="close-chat">&times;</button>
+            </div>
+            <div id="chat-content">
+                <p>Welcome! How can I help you?</p>
+            </div>
+            <div id="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Type a message...">
+                <button id="send-btn">
+                    <i class="fa fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const chatToggle = document.getElementById('chatbot-toggle');
+        const chatbox = document.getElementById('chatbox');
+        const closeChat = document.getElementById('close-chat');
+        const sendBtn = document.getElementById('send-btn');
+        const chatInput = document.getElementById('chat-input');
+        const chatContent = document.getElementById('chat-content');
+
+        chatToggle.addEventListener('click', () => {
+            chatbox.style.display = (chatbox.style.display === 'block') ? 'none' : 'block';
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatbox.style.display = 'none';
+        });
+
+        sendBtn.addEventListener('click', () => {
+            sendMessage();
+        });
+
+        chatInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            let userMessage = chatInput.value.trim();
+            if (userMessage !== "") {
+                let messageElement = document.createElement("p");
+                messageElement.textContent = "You: " + userMessage;
+                chatContent.appendChild(messageElement);
+                chatInput.value = "";
+                chatContent.scrollTop = chatContent.scrollHeight;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
